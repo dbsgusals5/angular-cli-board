@@ -1,0 +1,44 @@
+<div class="wrapper">
+<mat-card>
+    <mat-card-title>글 상세</mat-card-title>
+    <mat-card-content>
+        <mat-list class="list-class">
+            <mat-list-item>
+            <mat-icon matListIcon>title</mat-icon>
+            <div matLine>{{post?.title}}</div>
+            </mat-list-item>
+            <br>
+            <mat-list-item>
+            <mat-icon matListIcon>account_circle</mat-icon>
+            <div matLine>{{post?.email}}</div>
+            </mat-list-item>
+            <br>
+            <mat-list-item class="contnet-item">
+            <mat-icon matListIcon>message</mat-icon>
+            <div matLine>
+                <div class="white-space-pre">{{post?.content}}</div>
+            </div>
+            </mat-list-item>
+            <br>
+            <mar-option *ngIf="files.length > 0">
+            <mat-list-item class="contnet-item">
+                <mat-icon matListIcon>get_app</mat-icon>
+                <div matLine>
+                    <mar-option *ngFor="let file of files">
+                        <div class="white-space-pre"><a href="http://localhost:9090/file/{{file.fno}}">{{file.fileOriName}}</a></div>
+                    </mar-option>    
+                </div>
+                </mat-list-item>
+            </mar-option>    
+            <br>
+
+            <mat-list-item>
+            <mat-icon matListIcon>date_range</mat-icon>
+            <div matLine>{{post?.createDate | date: 'yyyy-MM-dd'}}</div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <br>
+    <app-comment [postId]=postId></app-comment>
+</mat-card>
+</div>

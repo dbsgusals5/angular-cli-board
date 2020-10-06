@@ -1,0 +1,51 @@
+<div class="wrapper">
+    <mat-card>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="userForm" (ngSubmit)="submit()">
+          <p>
+            <mat-form-field>
+                <input type="text" [(ngModel)]="user.email" matInput placeholder="메일" formControlName="email" required>
+            </mat-form-field>        
+          </p>
+          <p>
+            <mat-form-field>
+                <input type="text" [(ngModel)]="user.password" matInput placeholder="암호" formControlName="password" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+                <input type="text" [(ngModel)]="user.name" matInput placeholder="이름" formControlName="name" required>
+            </mat-form-field>
+          </p>
+          <p>
+          <mat-form-field>
+            <input type="text" [(ngModel)]="user.experience" matInput placeholder="경력" formControlName="experience" required>
+           </mat-form-field>
+          </p>
+          <p>
+          <mat-form-field>
+            <input type="text" [(ngModel)]="user.domain" matInput placeholder="도메인" formControlName="domain" required>
+           </mat-form-field>
+          </p>     
+
+          <p *ngIf="f.email.touched && f.email.invalid && f.email.errors.required" class="error">
+            email is required
+          </p>
+          <p *ngIf="f.email.touched && f.email.invalid && f.email.errors.email" class="error">
+            Please enter valid email
+          </p>
+          <p *ngIf="f.password.touched && f.password.invalid && f.password.errors.required " class="error">
+            password is required
+          </p>
+          <p *ngIf="f.name.touched && f.name.invalid && f.name.errors.required" class="error">
+            name is required
+          </p>
+          
+          <div class="button">
+            <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">가입</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

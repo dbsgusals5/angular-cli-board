@@ -1,0 +1,33 @@
+
+ <div class="wrapper" flex="75">
+    <mat-card>
+        <mat-card-title>글쓰기</mat-card-title>
+        <div class="item">
+        <mat-card-content>
+          <form method="post" enctype="multipart/form-data">
+            <p>
+              <mat-form-field>
+                <input type="text" matInput placeholder="제목" [(ngModel)]="board.title" name="title" id="title" required
+                />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <textarea matInput placeholder="내용" rows="5" [(ngModel)]="board.content" name="content" id="txt"
+                 required></textarea>
+              </mat-form-field>
+            </p>
+            <p> 
+              <label class="btn btn-default">
+                <input type="file" (change)="selectFile($event)" multiple>
+              </label>
+            </p>
+            
+            <div class="button">
+              <button type="button" mat-stroked-button color="primary" [disabled]="!board.title || !board.content" (click)="registerNow()">등록</button>
+            </div>
+          </form>
+        </mat-card-content>
+    </div>
+      </mat-card>
+</div>

@@ -1,0 +1,113 @@
+ <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> --> -->
+<!------ Include the above in your HEAD tag ---------->
+
+
+<!-- <div class="container">
+    <div class="row">
+               <div id="custom-search-input">
+                                <div class="input-group col-md-12" style="text-align: center">
+                                    <input type="text" class="search-query form-control" placeholder="Search With Email Address"  name="email" [(ngModel)]="email"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="button" (click)="findUserByEmailId()">
+                                            <span class=" glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+    </div>
+    </div>
+<div class="container">
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Experience</th>
+            <th>Domain</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.experience}}</td>
+            <td>{{user.domain}}</td>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+          </tr>
+    </tbody>
+    </table>
+    </div>
+</div> -->
+
+<div class="wrapper">
+    <mat-card class="card">
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <div>
+        <H3>자유 게시판</H3>
+            <a [routerLink]="['/register']">    
+                <button mat-raised-button color="primary">     
+                <mat-icon>add</mat-icon> Add Post
+                </button>
+            </a>
+        </div>
+        </mat-card-title>
+        <mat-card-content>
+        <div class="container">
+            <!-- <mat-table [dataSource]="dataSource"> -->
+            <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>글번호</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="column-center">{{element.id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef>제목</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="column-center">{{element.title}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef>작성자</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="column-center">{{element.email}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="createDate">
+                <mat-header-cell *matHeaderCellDef>작성일</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="column-center">{{element.createDate | date: 'yyyy-MM-dd'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="updateDate">
+                <mat-header-cell *matHeaderCellDef>수정</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="column-center">
+                <mat-icon class="icon" *ngIf=" sessionEmail == element.email"
+                routerLink="/board/post/modify/{{element.id}}">edit</mat-icon>
+                <mat-icon class="icon" *ngIf=" sessionEmail == element.email"
+                 (click)="deletePost(element.id)">delete_forever</mat-icon>
+            </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+             <mat-row [routerLink]="'/board/post/'+row.id" *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+            </mat-table>
+            <!-- <mat-paginator #paginator
+                 [pageSizeOptions]="[5, 10, 20]">
+             </mat-paginator> -->
+
+             <mat-paginator class="paginator--centered"
+                appStylePaginator
+                 (page)="pageChangeEvent($event)"
+                 [length]="pageLength"
+                 [pageSize]="10"
+                 showFirstLastButtons>
+             </mat-paginator>
+             <!-- <nav aria-label="...">
+                <ul style="margin-left: 180px;margin-top:-10px;" class="pagination"  *ngIf="pageClient?.content" >
+                  <li *ngFor="let page of ' '.repeat(pageClient.totalPages).split(''), let i = index " (click)="onSelect(i)" [class.active]="i === selectedPage" class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+                </ul>
+              </nav> -->
+
+        </div>
+        </mat-card-content>
+    </mat-card>
+    </div>

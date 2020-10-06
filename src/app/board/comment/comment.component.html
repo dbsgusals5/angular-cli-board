@@ -1,0 +1,57 @@
+
+<div class="wrapper" flex="75">
+    <mat-card class="mat-elevation-z0 outline">
+        <mat-card-title>COMMENT</mat-card-title>
+        <div class="item">
+        <mat-card-content>
+          <form method="post" enctype="multipart/form-data">
+            <label class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+                <textarea class="mdc-text-field__input"  [(ngModel)]="content" name="content" id="content" rows="8" cols="40" aria-label="Label"></textarea>
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+            </label>
+            <div class="button">
+              <button type="button" mat-stroked-button color="primary" [disabled]="!content" (click)="commentReg()">등록</button>
+            </div>
+          </form>
+          <br>
+          <br>
+          <div matLine style="width: 410px;">
+            <mar-option *ngFor="let commentObj of filteredArray, let i=index;">
+               
+                <br>
+                <div style="float: right;">
+                  {{commentObj?.createDate | date: 'yyyy-MM-dd'}}
+                  </div><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-icon style="float: right;" class="deleteIcon" *ngIf=" sessionEmail == commentObj?.writer"
+                (click)="delete(commentObj?.cno)">delete_forever</mat-icon>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-icon style="float: right;" class="editIcon" *ngIf=" sessionEmail == commentObj?.writer" 
+                (click)="openDialog(commentObj?.cno)">edit</mat-icon>
+                <mat-list-item>
+                   <mat-icon matListIcon >account_circle</mat-icon>
+                    <div matLine>{{commentObj?.writer}}</div>
+                </mat-list-item>
+                <br>
+                <mat-list-item>
+                    <mat-icon matListIcon>message</mat-icon>
+                    <div matLine>{{commentObj?.content}}</div>
+                </mat-list-item> 
+                <mat-divider></mat-divider>
+                <br>
+            </mar-option>
+            <mat-paginator 
+            (page)="onPageChange($event)"
+            [length]="dataSize"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>  
+        </div>
+        </mat-card-content>
+        
+        </div>
+    </mat-card>
+</div>
